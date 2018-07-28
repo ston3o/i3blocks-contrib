@@ -1,0 +1,15 @@
+#!/bin/bash
+
+percents=$(acpi | awk '{print $4}' | sed 's/%,//')
+
+if [[ $percents -ge 0 && $percents -lt 25 ]]; then
+    echo "<span color='red'> $percents%</span>"
+elif [[ $percents -ge 25 && $percents -lt 50 ]]; then
+    echo "<span color='orange'> $percents%</span>"
+elif [[ $percents -ge 50 && $percents -lt 80 ]]; then
+    echo " $percents%"
+elif [[ $percents -ge 80 && $percents -lt 100 ]]; then
+    echo " $percents%"
+elif [[ $percents == 100 ]]; then
+    echo " $percents%"
+fi
