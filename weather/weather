@@ -6,15 +6,8 @@ API_KEY="58fb0dcd408b8dc0d6cb3653b49342f0"
 # Check on http://openweathermap.org/find
 CITY_ID="${BLOCK_INSTANCE}"
 
-URGENT_LOWER=0
+URGENT_LOWER=-10
 URGENT_HIGHER=40
-
-ICON_SUNNY=""
-ICON_CLOUDY=""
-ICON_RAINY=""
-ICON_STORM=""
-ICON_SNOW=""
-ICON_FOG=""
 
 SYMBOL_CELSIUS="℃"
 
@@ -27,27 +20,21 @@ WEATHER_TEMP=$(echo "${WEATHER_INFO}" | grep -o -e '\"temp\":\-\?[0-9]*' | awk -
 [[ ! $WEATHER_TEMP ]] && exit 1
 
 if [[ "${WEATHER_MAIN}" = *Snow* ]]; then
-  echo "${ICON_SNOW} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo "${ICON_SNOW} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
+  echo "${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 elif [[ "${WEATHER_MAIN}" = *Rain* ]] || [[ "${WEATHER_MAIN}" = *Drizzle* ]]; then
-  echo "${ICON_RAINY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo "${ICON_RAINY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
+  echo "${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 elif [[ "${WEATHER_MAIN}" = *Cloud* ]]; then
-  echo "${ICON_CLOUDY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo "${ICON_CLOUDY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
+  echo "${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 elif [[ "${WEATHER_MAIN}" = *Clear* ]]; then
-  echo "${ICON_SUNNY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo "${ICON_SUNNY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
+  echo "${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 elif [[ "${WEATHER_MAIN}" = *Fog* ]] || [[ "${WEATHER_MAIN}" = *Mist* ]]; then
-  echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
+  echo "${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 else
-  echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
 fi
